@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "DdnAtlas"
-version = "0.1.6"
+version = "0.1.7"
 description = ""
 authors = ["Kenneth Stott"]
 
@@ -12,6 +12,7 @@ pyfiglet = "^0.8.post1"
 python-dotenv = "^0.19.1"
 anthropic = "^0.34.2"
 PyYAML = "^6.0.2"
+apache-atlas = "^0.0.15"
 
 [tool.poetry.dev-dependencies]
 
