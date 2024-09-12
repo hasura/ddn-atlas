@@ -94,3 +94,48 @@ Options:
   --help              Show this message and exit.
 
 ```
+
+## Build from Source Instructions
+
+### Install build tools
+
+`pip install poetry twine`
+
+### Set Up a Virtual Environment:
+
+It’s a good practice to use a virtual environment to manage your project’s dependencies. You can create one using the following command:
+
+`python -m venv myenv`
+
+#### Activate the virtual environment:
+
+##### On Windows:
+`myenv\Scripts\activate`
+
+##### On macOS and Linux:
+`source myenv/bin/activate`
+
+### Install requirements
+
+`pip install -r requirements.txt`
+
+### Build ddn-atlas CLI
+`pip install .`
+
+### Test CLI
+
+`ddnatlas --version`
+
+Should return:
+
+```text
+    ____  ____  _   __   ___  ________    ___   _____
+   / __ \/ __ \/ | / /  /   |/_  __/ /   /   | / ___/
+  / / / / / / /  |/ /  / /| | / / / /   / /| | \__ \ 
+ / /_/ / /_/ / /|  /  / ___ |/ / / /___/ ___ |___/ / 
+/_____/_____/_/ |_/  /_/  |_/_/ /_____/_/  |_/____/  
+                                                     
+
+ddnatlas, version 1.0.0
+
+```

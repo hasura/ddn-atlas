@@ -4,10 +4,16 @@ import os
 import click
 from pyfiglet import Figlet
 from dotenv import load_dotenv
-
+from importlib.metadata import version, PackageNotFoundError
 from ddnatlas.get_entities import get_entities
 from ddnatlas.supergraph_atlas_types import generate_supergraph_types
 from ddnatlas.update import update_supergraph_metadata
+
+def get_version(package_name):
+    try:
+        return version(package_name)
+    except PackageNotFoundError:
+        return "Package not found"
 
 # setting up logging
 logging.basicConfig(level=logging.INFO,
@@ -51,7 +57,7 @@ def display_configuration():
 
 
 @click.group(cls=BannerGroup)
-@click.version_option(version="1.0.0")
+@click.version_option(version=get_version("DdnAtlas"))
 @click.option('--atlas-url', required=True, envvar='ATLAS_URL', callback=update_env,
               help='Atlas URL (required if ATLAS_URL env var is not set)')
 @click.option('--supergraph', required=True, envvar='SUPERGRAPH', callback=update_env,
