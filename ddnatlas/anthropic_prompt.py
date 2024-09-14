@@ -45,20 +45,70 @@ Enter the classifications into the response as the value of the "classifications
 
 The complete answer must be a JSON dictionary following this format:
 
-{ "glossary": { "guid": "<temporary guid as a unique negative number>", "qualifiedName": "<<the name of the glossary 
-in title case without spaces>@{{supergraph_name}}>", "name": "<the name of the glossary>", "shortDescription": "<a 
-short description of the glossary>", "longDescription": "<a longer description of the glossary>", "language": 
-"English", "usage": "<a short description of when to use this glossary>" }, "categories": [ { "guid": "<temporary 
-guid as a unique negative number>", "qualifiedName": "<<the name of the term in category in title case without 
-spaces>@.<glossary name in lower case>.{{supergraph_name}}>", "name": "<the category name>", "shortDescription": "<a 
-short description of the category>", "longDescription": "<a long description of the category>", "anchor": { 
-"glossaryGuid": "<the guid of the glossary>" } } ], "terms": [ { "guid": "<temporary guid as a unique negative 
-number>", "qualifiedName": "<<the name of the term in title case without spaces>@.<glossary name in lower case>.{{
-supergraph_name}}>", "name": "<the term>", "shortDescription": "<a short description of the term>", 
-"longDescription": "<a long description of the term>", "examples": [ "<an array of examples of using the term>" ], 
-"abbreviation": "<an abbreviation of the term>", "usage": "<describe the scenarios where the term might be used>", 
-"status": "ACTIVE", "anchor": { "glossaryGuid": "<the guid of the glossary>" }, "categories": [ { "categoryGuid": 
-"<the category guid associated with the term>" } ] } ], "relationships": [ { "typeName": 
-"AtlasGlossarySemanticAssignment", "end1": { "typeName": "AtlasGlossaryTerm", "guid": "<glossary_term_guid>" }, 
-"end2": { "typeName": "<entity_type_name>", "uniqueAttributes": { "qualifiedName": "<entity_qualified_name>" } } } ], 
-"classifications": { "<entity qualified name>": [ "<classification category>" ] } }"""
+{
+  "glossary": {
+    "guid": "<temporary guid as a unique negative number>",
+    "qualifiedName": "<<the name of the glossary in title case without spaces>@{{supergraph_name}}>",
+    "name": "<the name of the glossary>",
+    "shortDescription": "<a short description of the glossary>",
+    "longDescription": "<a longer description of the glossary>",
+    "language": "English",
+    "usage": "<a short description of when to use this glossary>"
+  },
+  "categories": [
+    {
+      "guid": "<temporary guid as a unique negative number>",
+      "qualifiedName": "<<the name of the term in category in title case without spaces>@.<glossary name in lower case>.{{supergraph_name}}>",
+      "name": "<the category name>",
+      "shortDescription": "<a short description of the category>",
+      "longDescription": "<a long description of the category>",
+      "anchor": {
+        "glossaryGuid": "<the guid of the glossary>"
+      }
+    }
+  ],
+  "terms": [
+    {
+      "guid": "<temporary guid as a unique negative number>",
+      "qualifiedName": "<<the name of the term in title case without spaces>@.<glossary name in lower case>.{{supergraph_name}}>",
+      "name": "<the term>",
+      "shortDescription": "<a short description of the term>",
+      "longDescription": "<a long description of the term>",
+      "examples": [
+        "<an array of examples of using the term>"
+      ],
+      "abbreviation": "<an abbreviation of the term>",
+      "usage": "<describe the scenarios where the term might be used>",
+      "status": "ACTIVE",
+      "anchor": {
+        "glossaryGuid": "<the guid of the glossary>"
+      },
+      "categories": [
+        {
+          "categoryGuid": "<the category guid associated with the term>"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "typeName": "AtlasGlossarySemanticAssignment",
+      "end1": {
+        "typeName": "AtlasGlossaryTerm",
+        "guid": "<glossary_term_guid>"
+      },
+      "end2": {
+        "typeName": "<entity_type_name>",
+        "uniqueAttributes": {
+          "qualifiedName": "<entity_qualified_name>"
+        }
+      }
+    }
+  ],
+  "classifications": {
+    "<entity qualified name>": [
+      "<classification category>"
+    ]
+  }
+}
+"""
