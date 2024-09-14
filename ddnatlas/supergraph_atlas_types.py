@@ -15,7 +15,8 @@ def generate_supergraph_types():
     client = AtlasClient(atlas_url, (username, password))
 
     try:
-        with open('supergraph_types.json') as json_file:
+        current_file_dir = os.path.dirname(os.path.realpath(__file__))
+        with open(os.path.join(current_file_dir, 'supergraph_types.json')) as json_file:
             types = json.load(json_file)
             response = client.typedef.create_atlas_typedefs(types)
 

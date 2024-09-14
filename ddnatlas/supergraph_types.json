@@ -526,6 +526,18 @@
           }
         },
         {
+          "name": "testingType",
+          "displayName": "Testing Type",
+          "typeName": "string",
+          "isOptional": true,
+          "isUnique": true,
+          "isIndexable": true,
+          "options": {
+            "maxStrLength": 250,
+            "applicableEntityTypes": "[\"field\",\"column\"]"
+          }
+        },
+        {
           "name": "validValues",
           "displayName": "Valid Values",
           "typeName": "array<string>",
