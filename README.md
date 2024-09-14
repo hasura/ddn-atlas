@@ -105,15 +105,15 @@ Options:
 
 It’s a good practice to use a virtual environment to manage your project’s dependencies. You can create one using the following command:
 
-`python -m venv myenv`
+`python -m venv .venv`
 
 #### Activate the virtual environment:
 
 ##### On Windows:
-`myenv\Scripts\activate`
+`.venv\Scripts\activate`
 
 ##### On macOS and Linux:
-`source myenv/bin/activate`
+`source .venv/bin/activate`
 
 ### Install requirements
 
