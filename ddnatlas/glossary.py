@@ -6,12 +6,14 @@ from apache_atlas.model.instance import AtlasClassification
 from apache_atlas.model.relationship import AtlasRelationship
 
 from ddnatlas.anthropic_prompt import glossary_prompt
+from ddnatlas.anthropic_prompt_data_type import data_type_prompt
 from ddnatlas.claude import process_json_with_claude
 from apache_atlas.client.base_client import AtlasClient, type_coerce
 
+from ddnatlas.supergraph_types import enum_list
+
 
 def create_glossary(supergraph, entities, include=None, exclude=None):
-
     url = os.getenv('ATLAS_URL')
     username = os.getenv('ATLAS_USERNAME')
     password = os.getenv('ATLAS_PASSWORD')
@@ -85,21 +87,6 @@ def create_glossary(supergraph, entities, include=None, exclude=None):
 
     new_glossary = client.glossary.get_glossary_ext_info(glossary_guid=glossary_guid)
     relationships = glossary['relationships']
-    for qualified_name, data_type in glossary['data_types'].items():
-        result = client.discovery.attribute_search(type_name='Asset', attr_name='qualifiedName',
-                                                   attr_value_prefix=qualified_name, limit=1, offset=0)
-        guid = result['entities'][0]['guid']
-        if guid:
-            business_metadata = {
-                "data_analysis": {
-                    "testingType": data_type
-                }
-            }
-            try:
-                client.entity.add_or_update_business_attributes(entity_guid=guid, is_overwrite=False,
-                                                                business_attributes=business_metadata)
-            except Exception:
-                pass
     for relationship in relationships:
         temp_guid = relationship['end1']['guid']
         old_name = [item['name'] for item in glossary['terms'] if item['guid'] == temp_guid]

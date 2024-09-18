@@ -86,9 +86,7 @@ def update_supergraph_metadata(include: Optional[List[str]], exclude: Optional[L
         }
     }]
     entities = all_entities + supergraph_entity
-
-    logging.info("Adding business metadata")
-    add_business_metadata(entities, include, exclude)
+    supergraph_name = supergraph['definition'].get('name', 'enterprise')
 
     try:
         remove_entities = add_descriptions(entities, include, exclude)
@@ -97,13 +95,22 @@ def update_supergraph_metadata(include: Optional[List[str]], exclude: Optional[L
     except Exception as e:
         logging.error(e)
 
-    supergraph_name = supergraph['definition'].get('name', 'enterprise')
+    logging.info("Adding business metadata")
+    try:
+        add_business_metadata(supergraph_name, entities, include, exclude)
+    except Exception as e:
+        logging.error(e)
+
+    logging.info("Adding business glossary")
     try:
         create_glossary(supergraph_name, entities, include, exclude)
     except Exception as e:
         logging.error(e)
 
     logging.info("Creating relationships..")
-    create_relationships(relationships, object_types, entities)
+    try:
+        create_relationships(relationships, object_types, entities)
+    except Exception as e:
+        logging.error(e)
 
     logging.info("Success!")

@@ -3,6 +3,8 @@ import logging
 import os
 from apache_atlas.client.base_client import AtlasClient
 
+from ddnatlas.supergraph_types import supergraph_types
+
 
 def generate_supergraph_types():
 
@@ -15,11 +17,7 @@ def generate_supergraph_types():
     client = AtlasClient(atlas_url, (username, password))
 
     try:
-        current_file_dir = os.path.dirname(os.path.realpath(__file__))
-        with open(os.path.join(current_file_dir, 'supergraph_types.json')) as json_file:
-            types = json.load(json_file)
-            response = client.typedef.create_atlas_typedefs(types)
-
+        response = client.typedef.create_atlas_typedefs(supergraph_types)
         logging.info('Request execution completed.')
         print(response)
     except Exception as e:
