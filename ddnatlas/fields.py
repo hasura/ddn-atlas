@@ -16,7 +16,7 @@ def create_fields(supergraph_name, subgraph_name, object_name, object_type, enti
             "attributes": {
                 "name": field_name,
                 "qualifiedName": qualified_name,
-                "primitive": primitives.apache_primitives[field['type'].replace('!', '')],
+                "primitive": primitives.apache_primitives[field['type'].upper().replace('!', '')],
                 "column": {
                     "typeName": "column",
                     "uniqueAttributes": {
